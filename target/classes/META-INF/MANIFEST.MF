@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: ap admin
+Build-Jdk: 17.0.2
+Implementation-Title: Finance Application
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.app.finance
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/hgapp
+Created-By: Maven Integration for Eclipse
+
