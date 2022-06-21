@@ -81,17 +81,18 @@ public class FDAccountServiceImpl extends DaoServicess implements FDAccountServi
 		}
 		if (fdAccountDto.getInterstPayFrom() == null)
 			fdAccountDto.setInterstPayFrom(fdAccountDto.getStartDate());
-
-		fdAccountDto.setPendingMonthsOfInterest(
-			DateUtils.getMontDifference(fdAccountDto.getInterstPayFrom(), LocalDate.now()));
-		if (fdAccountDto.getPendingMonthsOfInterest() > 0) {
-			fdAccountDto.setPendingInterestAmt(this.calculateInterestAmt(fdAccountDto.getAmount(),
-					fdAccountDto.getInterest(), fdAccountDto.getPendingMonthsOfInterest()));
-			fdAccountDto.setInterestPayTo(
-					fdAccountDto.getInterstPayFrom().plusMonths(fdAccountDto.getPendingMonthsOfInterest()));
-		} else
-			fdAccountDto.setInterestPayTo(fdAccountDto.getInterstPayFrom()
-					.plusDays(DateUtils.getDays(fdAccountDto.getInterstPayFrom(), LocalDate.now())));
+		if (fdAccountDto.getIsActive().equalsIgnoreCase("Active")) {
+			fdAccountDto.setPendingMonthsOfInterest(
+					DateUtils.getMontDifference(fdAccountDto.getInterstPayFrom(), LocalDate.now()));
+			if (fdAccountDto.getPendingMonthsOfInterest() > 0) {
+				fdAccountDto.setPendingInterestAmt(this.calculateInterestAmt(fdAccountDto.getAmount(),
+						fdAccountDto.getInterest(), fdAccountDto.getPendingMonthsOfInterest()));
+				fdAccountDto.setInterestPayTo(
+						fdAccountDto.getInterstPayFrom().plusMonths(fdAccountDto.getPendingMonthsOfInterest()));
+			} else
+				fdAccountDto.setInterestPayTo(fdAccountDto.getInterstPayFrom()
+						.plusDays(DateUtils.getDays(fdAccountDto.getInterstPayFrom(), LocalDate.now())));
+		}
 		return fdAccountDto;
 	}
 

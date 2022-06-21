@@ -3,7 +3,6 @@ com\app\finance\dto\LoanAccountDetailDto.class
 com\app\finance\entity\UserRole.class
 com\app\finance\repositories\CustomerRepo.class
 com\app\finance\utils\DateUtils.class
-META-INF\spring-configuration-metadata.json
 com\app\finance\dao\FirmLoanDao.class
 com\app\finance\repositories\FDAccountRepo.class
 com\app\finance\dao\LoanAccountDao.class
@@ -77,6 +76,7 @@ com\app\finance\dao\impl\ExpenseDaoImpl.class
 com\app\finance\service\ExpenseService.class
 com\app\finance\dao\AuthDao.class
 com\app\finance\dao\UserRoleDao.class
+com\app\finance\model\Errors.class
 com\app\finance\service\impl\ServiceManagerImpl.class
 com\app\finance\controller\LoanController.class
 com\app\finance\entity\CustDetail.class
@@ -86,6 +86,7 @@ com\app\finance\dto\LoanEMIDetailDto.class
 com\app\finance\entity\FirmLoanDtls.class
 com\app\finance\enums\ResponseErrorType.class
 com\app\finance\repositories\ContactPersionRepo.class
+com\app\finance\model\response\Response.class
 com\app\finance\repositories\LoanAccountDetailRepo.class
 com\app\finance\dto\AppSummaryDto.class
 com\app\finance\service\DownloadService.class
@@ -96,7 +97,6 @@ com\app\finance\service\FirmLoanService.class
 com\app\finance\entity\UserProfile.class
 com\app\finance\entity\ExpenseTypes.class
 com\app\finance\dto\BaseResponse.class
-com\app\finance\config\SwaggerConfig.class
 com\app\finance\repositories\AuthRepositories.class
 com\app\finance\dao\impl\CustomerDaoImpl.class
 com\app\finance\repositories\ExpenseDetailRepo.class
@@ -106,6 +106,7 @@ com\app\finance\exception\RecordNotFound.class
 com\app\finance\dao\impl\FirmLoanDaoImpl.class
 com\app\finance\service\impl\DashBoardServiceImpl.class
 com\app\finance\entity\LoanInstallmentsDetail.class
+com\app\finance\exception\DuplicateRecord.class
 com\app\finance\exception\ExceptionDetails.class
 com\app\finance\dto\LoanRepoDto.class
 com\app\finance\service\CustomerService.class

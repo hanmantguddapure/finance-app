@@ -8,6 +8,8 @@ E:\Projects\finance_app\src\main\java\com\app\finance\repositories\ExpenseDetail
 E:\Projects\finance_app\src\main\java\com\app\finance\entity\LoanInstallmentsDetail.java
 E:\Projects\finance_app\src\main\java\com\app\finance\service\ExpenseService.java
 E:\Projects\finance_app\src\main\java\com\app\finance\service\impl\FDAccountServiceImpl.java
+E:\Projects\finance_app\src\main\java\com\app\finance\model\Errors.java
+E:\Projects\finance_app\src\main\java\com\app\finance\model\response\Response.java
 E:\Projects\finance_app\src\main\java\com\app\finance\service\impl\DownloadServiceImpl.java
 E:\Projects\finance_app\src\main\java\com\app\finance\repositories\FirmLoanRepo.java
 E:\Projects\finance_app\src\main\java\com\app\finance\entity\LoanPenalty.java
@@ -35,6 +37,7 @@ E:\Projects\finance_app\src\main\java\com\app\finance\entity\UserRole.java
 E:\Projects\finance_app\src\main\java\com\app\finance\service\impl\ServiceManagerImpl.java
 E:\Projects\finance_app\src\main\java\com\app\finance\service\impl\CustomerServiceImpl.java
 E:\Projects\finance_app\src\main\java\com\app\finance\service\UserRoleService.java
+E:\Projects\finance_app\src\main\java\com\app\finance\exception\DuplicateRecord.java
 E:\Projects\finance_app\src\main\java\com\app\finance\dto\LoanCollectionRepo.java
 E:\Projects\finance_app\src\main\java\com\app\finance\exception\CustomeExceptionHandler.java
 E:\Projects\finance_app\src\main\java\com\app\finance\entity\FDAccount.java
