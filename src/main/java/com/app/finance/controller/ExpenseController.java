@@ -12,12 +12,14 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.finance.dto.ExpenseDto;
 import com.app.finance.entity.ExpenseTypes;
+import com.app.finance.model.response.Response;
 import com.app.finance.utils.DateUtils;
 
 @RestController
@@ -68,5 +70,13 @@ public class ExpenseController extends ControllerManager {
 		return ResponseEntity.ok(this.getServiceManager().getExpenseService().findByFromDateBetween(
 				DateUtils.convertStringToLocalDate(fromDate), DateUtils.convertStringToLocalDate(toDate)));
 	}
-
+	
+	@PutMapping(value = "/rename-expense-type/{expenseTypeId}/{newExpenseTypeName}")
+	public ResponseEntity<?> getExpensesByBewteenDate(@PathVariable Long expenseTypeId,
+			@PathVariable String newExpenseTypeName) {
+		String responseMsg=this.getServiceManager().getExpenseService().updateExpenseTypeName(expenseTypeId, newExpenseTypeName);
+		Response<String> response=Response.<String>builder().response(responseMsg).status(HttpStatus.OK.value()).build();
+		return ResponseEntity.ok(
+				response);
+	}
 }

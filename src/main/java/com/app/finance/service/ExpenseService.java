@@ -21,4 +21,12 @@ public interface ExpenseService {
 	public List<ExpenseDto> findByFromDateBetween(LocalDate fromDate, LocalDate toDate);
 
 	public List<ExpenseDto> findExpensesByExpenseType(String expenseType);
+	
+	/** This method update the expense type name.
+	 * 
+	 * @param expenseTypeId
+	 * @param newExpenseTypeName
+	 * @return {@link String}
+	 */
+	public String updateExpenseTypeName(Long expenseTypeId,String newExpenseTypeName);
 }

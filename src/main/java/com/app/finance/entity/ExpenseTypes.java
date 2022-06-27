@@ -10,42 +10,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "expense_types")
-public class ExpenseTypes implements Serializable{
-	/**
-	 * 
-	 */
+public class ExpenseTypes implements Serializable {
 	private static final long serialVersionUID = 831363608068488917L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long expenseTypeId;
-	@Column(unique=true)
+	@Column(unique = true)
 	private String expenseType;
 	private LocalDate lastUpodatedDate;
-
-	public Long getExpenseTypeId() {
-		return expenseTypeId;
-	}
-
-	public void setExpenseTypeId(Long expenseTypeId) {
-		this.expenseTypeId = expenseTypeId;
-	}
-
-	public String getExpenseType() {
-		return expenseType;
-	}
-
-	public void setExpenseType(String expenseType) {
-		this.expenseType = expenseType;
-	}
-
-	public LocalDate getLastUpodatedDate() {
-		return lastUpodatedDate;
-	}
-
-	public void setLastUpodatedDate(LocalDate lastUpodatedDate) {
-		this.lastUpodatedDate = lastUpodatedDate;
-	}
-
 }

@@ -1,6 +1,7 @@
 package com.app.finance.service.impl;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.app.finance.constant.BaseConstant;
 import com.app.finance.dto.ExpenseDto;
 import com.app.finance.entity.ExpenseDetail;
 import com.app.finance.entity.ExpenseTypes;
@@ -44,13 +46,7 @@ public class ExpenseServiceImpl extends DaoServicess implements ExpenseService {
 	@Override
 	public List<ExpenseTypes> getAllExpenseTypes() {
 		return this.getDaoManager().getExpenseDao().getAllExpenseTypes();
-		/*
-		 * ; return
-		 * this.getDaoManager().getExpenseDao().getAllExpenseTypes().stream().filter(
-		 * expenseName->expenseName.getExpenseType()!=null)
-		 * .collect(Collectors.toMap(ExpenseTypes::getExpenseTypeId,
-		 * ExpenseTypes::getExpenseType));
-		 */}
+	}
 
 	@Override
 	public ExpenseTypes addExpenseTypes(ExpenseTypes reqExpenseTypes) {
@@ -126,5 +122,16 @@ public class ExpenseServiceImpl extends DaoServicess implements ExpenseService {
 			return expenseDtos;
 		}
 		return null;
+	}
+	
+	public String updateExpenseTypeName(Long expenseTypeId, String newExpenseTypeName) {
+		Optional<ExpenseTypes> expenseTypesOptional = this.getDaoManager().getExpenseDao()
+				.getExpenseTypeById(expenseTypeId);
+		if (!expenseTypesOptional.isPresent())
+			throw new RecordNotFound(RecordNotFound.Errors.RECORD_NOT_FOUND.name());
+		this.getDaoManager().getExpenseDao()
+				.addExpenseTypes(ExpenseTypes.builder().expenseTypeId(expenseTypesOptional.get().getExpenseTypeId())
+						.expenseType(newExpenseTypeName).lastUpodatedDate(LocalDate.now()).build());
+		return BaseConstant.UPDATE_SUCESS_MSG;
 	}
 }
