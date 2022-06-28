@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.app.finance.model.AddressDtls;
+
 public class CustContactPersionDto implements Serializable {
 
 	private static final long serialVersionUID = -134229937167465569L;
@@ -14,7 +16,7 @@ public class CustContactPersionDto implements Serializable {
 	@NotNull(message = "fullName may not be null")
 	private String fullName;
 	private String designation;
-	private AddressDto address = new AddressDto();
+	private AddressDtls address = new AddressDtls();
 
 	public Long getCustId() {
 		return custId;
@@ -40,11 +42,11 @@ public class CustContactPersionDto implements Serializable {
 		this.designation = designation;
 	}
 
-	public AddressDto getAddress() {
+	public AddressDtls getAddress() {
 		return address;
 	}
 
-	public void setAddress(AddressDto address) {
+	public void setAddress(AddressDtls address) {
 		this.address = address;
 	}
 

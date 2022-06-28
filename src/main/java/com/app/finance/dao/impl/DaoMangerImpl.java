@@ -16,22 +16,19 @@ import com.app.finance.dao.UserRoleDao;
 public class DaoMangerImpl implements DaoManger {
 	@Autowired
 	private CustomerDao custMasterDao;
-	
-
 	@Autowired
 	private AuthDao authDao;
 	@Autowired
 	private UserRoleDao userRole;
-	
 	@Autowired
 	private LoanAccountDao loanSectionDao;
-
 	@Autowired
 	private ExpenseDao expenseDao;
 	@Autowired
 	private FDAccountDao fdAccountDao;
 	@Autowired
 	private FirmLoanDao firmLoanDao;
+
 	public AuthDao getAuthDao() {
 		return authDao;
 	}
@@ -43,7 +40,6 @@ public class DaoMangerImpl implements DaoManger {
 	public CustomerDao getCustMasterDao() {
 		return custMasterDao;
 	}
-
 
 	public CustomerDao getCustomerDao() {
 		return custMasterDao;
@@ -92,6 +88,5 @@ public class DaoMangerImpl implements DaoManger {
 	public void setFirmLoanDao(FirmLoanDao firmLoanDao) {
 		this.firmLoanDao = firmLoanDao;
 	}
-	
 
 }

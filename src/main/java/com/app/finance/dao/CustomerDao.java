@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.app.finance.entity.AddressDetail;
 import com.app.finance.entity.ContactPersion;
 import com.app.finance.entity.CustDetail;
+import com.app.finance.entity.CustNomineeDtls;
 
 public interface CustomerDao {
 	public CustDetail saveOrUpdateCustomerDtl(CustDetail custDetail);
@@ -27,5 +28,11 @@ public interface CustomerDao {
 	public Optional<ContactPersion> findContactPersionById(Long contactPersionId);
 
 	public List<ContactPersion> findContactPersionsByCustId(CustDetail custId);
+
+	CustNomineeDtls saveOrUpdateCustNomineeDtls(CustNomineeDtls custNomineeDtls);
+
+	List<CustNomineeDtls> findCustNominneesByCustId(CustDetail custid);
+
+	Optional<CustNomineeDtls> findCusNomineeDtlsByNomineeId(Long nomineeId);
 
 }

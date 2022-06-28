@@ -23,7 +23,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.finance.dto.CustContactPersionDto;
-import com.app.finance.dto.CustomerDto;
+import com.app.finance.model.request.CustNomineeDtlsRequest;
+import com.app.finance.model.request.CustomerDtlsRequest;
+import com.app.finance.model.response.CustomerDtsResponse;
+import com.app.finance.model.response.Response;
 
 @RestController
 @RequestMapping("/customer")
@@ -31,7 +34,7 @@ public class CustomerController extends ControllerManager {
 	private final Logger logger = LogManager.getLogger(CustomerController.class);
 
 	@PostMapping("/add-new")
-	public ResponseEntity<?> addNew(@Valid @RequestBody CustomerDto customer, Errors error)
+	public ResponseEntity<?> addNew(@Valid @RequestBody CustomerDtlsRequest customer, Errors error)
 			throws MethodArgumentNotValidException {
 		logger.info(":Adding New Customer Process Begins--");
 		if (error.hasErrors())
@@ -54,8 +57,10 @@ public class CustomerController extends ControllerManager {
 		logger.info(" : Find Customer By Id Process Begins------");
 		if (custId == null)
 			throw new NullPointerException("custId Is Empty");
-		return new ResponseEntity<>(this.getServiceManager().getCustomerService().findCustomerDtlById(custId),
-				HttpStatus.OK);
+		CustomerDtsResponse customerDtsResponse = this.getServiceManager().getCustomerService()
+				.getCustomerDtlsByCustId(custId);
+		return new ResponseEntity<>(
+				Response.builder().response(customerDtsResponse).status(HttpStatus.OK.value()).build(), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{custId}")
@@ -67,7 +72,7 @@ public class CustomerController extends ControllerManager {
 	}
 
 	@PutMapping("/edit")
-	public ResponseEntity<?> editCustomerDetail(@Valid @RequestBody CustomerDto customer, Errors error) {
+	public ResponseEntity<?> editCustomerDetail(@Valid @RequestBody CustomerDtlsRequest customer, Errors error) {
 		logger.info(":Editing Customer Detail Of--" + customer.getFullName());
 		if (error.hasErrors())
 			return new ResponseEntity<>(
@@ -117,4 +122,19 @@ public class CustomerController extends ControllerManager {
 				this.getServiceManager().getCustomerService().saveOrUpdateAddressDetail(custContact),
 				HttpStatus.ACCEPTED);
 	}
+	
+
+	@PostMapping("/nominee/add")
+	public ResponseEntity<?> addNominee(@Valid @RequestBody CustNomineeDtlsRequest custNomineeDtlsRequest,
+			Errors error) {
+		logger.info(":Adding New Nominnee--");
+		if (error.hasErrors())
+			return new ResponseEntity<>(
+					error.getAllErrors().stream().map(data -> data.getDefaultMessage()).collect(Collectors.toList()),
+					HttpStatus.NOT_ACCEPTABLE);
+		String msg = this.getServiceManager().getCustomerService().saveOrUpdateCustNomineeDtls(custNomineeDtlsRequest);
+		Response<String> response = Response.<String>builder().response(msg).status(HttpStatus.OK.value()).build();
+		return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+	}
+	
 }

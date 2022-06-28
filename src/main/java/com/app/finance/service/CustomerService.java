@@ -3,15 +3,17 @@ package com.app.finance.service;
 import java.util.List;
 
 import com.app.finance.dto.CustContactPersionDto;
-import com.app.finance.dto.CustomerDto;
 import com.app.finance.entity.CustDetail;
+import com.app.finance.model.request.CustNomineeDtlsRequest;
+import com.app.finance.model.request.CustomerDtlsRequest;
+import com.app.finance.model.response.CustomerDtsResponse;
 
 public interface CustomerService {
-	public CustomerDto saveOrUpdateCustomerDtl(CustomerDto customer);
+	public CustomerDtlsRequest saveOrUpdateCustomerDtl(CustomerDtlsRequest customer);
 
 	/* public CustomerDto editCustomerDetail(CustomerDto customer); */
 
-	public CustomerDto findCustomerDtlById(Long custId);
+	public CustomerDtlsRequest findCustomerDtlById(Long custId);
 
 	public List<CustDetail> findAllCustomers();
 
@@ -22,5 +24,8 @@ public interface CustomerService {
 	/*public CustContactPersionDto editCustContactPersion(CustContactPersionDto contactPersionDto);*/
 
 	public List<CustContactPersionDto> findContactPersionsByCustId(Long custId);
-
+	
+	public String saveOrUpdateCustNomineeDtls(CustNomineeDtlsRequest request);
+	
+	public CustomerDtsResponse getCustomerDtlsByCustId(Long custId);
 }

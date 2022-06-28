@@ -11,8 +11,10 @@ import com.app.finance.dao.CustomerDao;
 import com.app.finance.entity.AddressDetail;
 import com.app.finance.entity.ContactPersion;
 import com.app.finance.entity.CustDetail;
+import com.app.finance.entity.CustNomineeDtls;
 import com.app.finance.repositories.AddressRepo;
 import com.app.finance.repositories.ContactPersionRepo;
+import com.app.finance.repositories.CustNomineeRepo;
 import com.app.finance.repositories.CustomerRepo;
 
 @Repository
@@ -21,9 +23,10 @@ public class CustomerDaoImpl implements CustomerDao {
 	CustomerRepo customerRepo;
 	@Autowired
 	AddressRepo custAddressRepo;
-
 	@Autowired
 	ContactPersionRepo custContactpersionRepo;
+	@Autowired
+	CustNomineeRepo custNomineeRepo;
 
 	@Override
 	public CustDetail saveOrUpdateCustomerDtl(CustDetail custDetail) {
@@ -78,5 +81,18 @@ public class CustomerDaoImpl implements CustomerDao {
 	public CustDetail findByFullName(String fullName) {
 		return customerRepo.findByFullName(fullName);
 	}
-
+	
+	@Override
+	public CustNomineeDtls saveOrUpdateCustNomineeDtls(CustNomineeDtls custNomineeDtls) {
+		return custNomineeRepo.save(custNomineeDtls);
+	}
+	
+	@Override
+	public List<CustNomineeDtls> findCustNominneesByCustId(CustDetail custid) {
+		return custNomineeRepo.getCustCustNomineeDtlsByCustId(custid);
+	}
+	@Override
+	public Optional<CustNomineeDtls> findCusNomineeDtlsByNomineeId(Long nomineeId) {
+		return custNomineeRepo.findById(nomineeId);
+	}
 }
