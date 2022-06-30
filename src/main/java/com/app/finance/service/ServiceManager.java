@@ -16,4 +16,6 @@ public interface ServiceManager {
 	public FDAccountService getFdAccountService();
 
 	public DashBoardService getDashBoardService();
+
+	public SavingAccountService getSavingAccountService();
 }

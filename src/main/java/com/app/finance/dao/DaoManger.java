@@ -15,4 +15,6 @@ public interface DaoManger {
 
 	public FirmLoanDao getFirmLoanDao();
 
+	public SavingAccDao getSavingAccDao();
+
 }
