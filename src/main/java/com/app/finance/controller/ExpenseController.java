@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,13 +71,19 @@ public class ExpenseController extends ControllerManager {
 		return ResponseEntity.ok(this.getServiceManager().getExpenseService().findByFromDateBetween(
 				DateUtils.convertStringToLocalDate(fromDate), DateUtils.convertStringToLocalDate(toDate)));
 	}
-	
+
 	@PutMapping(value = "/rename-expense-type/{expenseTypeId}/{newExpenseTypeName}")
 	public ResponseEntity<?> getExpensesByBewteenDate(@PathVariable Long expenseTypeId,
 			@PathVariable String newExpenseTypeName) {
-		String responseMsg=this.getServiceManager().getExpenseService().updateExpenseTypeName(expenseTypeId, newExpenseTypeName);
-		Response<String> response=Response.<String>builder().response(responseMsg).status(HttpStatus.OK.value()).build();
-		return ResponseEntity.ok(
-				response);
+		String responseMsg = this.getServiceManager().getExpenseService().updateExpenseTypeName(expenseTypeId,
+				newExpenseTypeName);
+		Response<String> response = Response.<String>builder().response(responseMsg).status(HttpStatus.OK.value())
+				.build();
+		return ResponseEntity.ok(response);
+	}
+
+	@DeleteMapping(value = "/delete-expenses/{expeneId}")
+	public ResponseEntity<?> getExpensesByFromDate(@PathVariable Long expeneId) {
+		return ResponseEntity.ok(this.getServiceManager().getExpenseService().deleteExpenseDtl(expeneId));
 	}
 }

@@ -21,6 +21,8 @@ public interface ExpenseDao {
 	public List<ExpenseDetail> getExpenseDetailByDate(LocalDate fromDate, LocalDate toDate);
 
 	public Optional<ExpenseTypes> getExpenseTypeById(Long expenseTypeId);
-	
+
 	public List<ExpenseDetail> getExpenseDetailBExpenseType(String expenseType);
+
+	public void deleteExpenseDtl(Long expenseDtlId);
 }

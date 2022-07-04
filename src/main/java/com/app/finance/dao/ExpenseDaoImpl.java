@@ -59,4 +59,8 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		return expenseDetailRepo.getExpenseDetailByExpenseType(expenseType);
 	}
 
+	// @Override
+	public void deleteExpenseDtl(Long expenseDtlId) {
+		expenseDetailRepo.deleteById(expenseDtlId);
+	}
 }

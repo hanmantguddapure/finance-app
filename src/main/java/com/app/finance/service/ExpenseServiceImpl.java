@@ -132,4 +132,10 @@ public class ExpenseServiceImpl extends DaoServicess implements ExpenseService {
 						.expenseType(newExpenseTypeName).lastUpodatedDate(LocalDate.now()).build());
 		return BaseConstant.UPDATE_SUCESS_MSG;
 	}
+
+	@Override
+	public String deleteExpenseDtl(Long expenseTypeId) {
+		this.getDaoManager().getExpenseDao().deleteExpenseDtl(expenseTypeId);
+		return BaseConstant.SUCESS_MSG;
+	}
 }

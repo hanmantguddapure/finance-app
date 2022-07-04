@@ -29,4 +29,6 @@ public interface ExpenseService {
 	 * @return {@link String}
 	 */
 	public String updateExpenseTypeName(Long expenseTypeId,String newExpenseTypeName);
+	
+	public String deleteExpenseDtl(Long expenseTypeId);
 }

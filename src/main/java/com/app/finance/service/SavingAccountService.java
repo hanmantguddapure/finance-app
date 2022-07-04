@@ -14,6 +14,6 @@ public interface SavingAccountService {
 	
 	public SavingAccounResponse findByAccountNumber(Long accountNumber);
 	
-	public List<SavingAccounResponse> findAllByStatus(Short status);
+	public List<SavingAccounResponse> findAllByStatus(Short isActive);
 
 }

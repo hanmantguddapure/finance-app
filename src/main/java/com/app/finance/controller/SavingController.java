@@ -37,10 +37,10 @@ public class SavingController extends ControllerManager {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	@GetMapping("/find-by-account-status/{isAcitve}")
-	ResponseEntity<?> findByAccountStatus(@PathVariable(name = "isActive") Short isActive) {
+	@GetMapping("/find-by-account-status/{status}")
+	ResponseEntity<?> findByAccountStatus(@PathVariable(name = "status") short status) {
 		List<SavingAccounResponse> responselst = this.getServiceManager().getSavingAccountService()
-				.findAllByStatus(isActive);
+				.findAllByStatus(status);
 		Response<List<SavingAccounResponse>> response = Response.<List<SavingAccounResponse>>builder()
 				.response(responselst).status(HttpStatus.OK.value()).build();
 		return new ResponseEntity<>(response, HttpStatus.OK);

@@ -76,7 +76,7 @@ public class SavingAccountServiceImpl extends DaoServicess implements SavingAcco
 		if (!savingAccountDtlOptional.isPresent())
 			throw new RecordNotFound("Saving account Not Found");
 		SavingAccount savingAccountEntity = savingAccountDtlOptional.get();
-		if (savingAccounReq.getIsCredit().equals(0)) {
+		if (savingAccounReq.getIsCredit()==0) {
 			if (savingAccounReq.getAmount() >= savingAccountEntity.getAmount())
 				throw new BadRequest("insufficient balance");
 			savingAccountEntity.setAmount(savingAccountEntity.getAmount() - savingAccounReq.getAmount());
