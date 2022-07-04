@@ -4,8 +4,6 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -26,7 +24,6 @@ import com.app.finance.utils.DateUtils;
 @RestController
 @RequestMapping(value = "/expense")
 public class ExpenseController extends ControllerManager {
-	private final Logger logger = LogManager.getLogger(ExpenseController.class);
 
 	@PostMapping(value = "/add-details")
 	public ResponseEntity<?> addExpenseDetails(@Valid @RequestBody ExpenseDto expenseDetailDto, Errors errors) {
