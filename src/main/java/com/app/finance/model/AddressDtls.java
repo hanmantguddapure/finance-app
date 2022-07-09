@@ -11,13 +11,13 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressDtls{
+public class AddressDtls {
 	private String address;
 	private String city;
 	private String district;
 	private String state;
 	private String country;
-	private String zipCode;
+	private Integer zipCode;
 	private String email;
 	private String phoneNo;
 	private String nativePlace;

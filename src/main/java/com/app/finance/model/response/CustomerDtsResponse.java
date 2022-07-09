@@ -19,7 +19,7 @@ public class CustomerDtsResponse {
 	private Long custId;
 	private String fullName;
 	private String shortName;
-	private String buiseness;
+	private String profession;
 	private String adharNo;
 	private String panNo;
 	private AddressDtls address;

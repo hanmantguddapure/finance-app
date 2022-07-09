@@ -99,7 +99,7 @@ public class LoanAccountServiceImpl extends DaoServicess implements LoanAccountS
 			}).collect(Collectors.toList());
 			accountDetailDto.setLoanCollections(detailDtos);
 		}
-
+		
 		return accountDetailDto;
 	}
 

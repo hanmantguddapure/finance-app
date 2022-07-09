@@ -65,6 +65,11 @@ public class CustomerDaoImpl implements CustomerDao {
 	public ContactPersion saveOrUpdateContactPersion(ContactPersion contactPersions) {
 		return custContactpersionRepo.save(contactPersions);
 	}
+	
+	@Override
+	public Iterable<ContactPersion> saveAll(List<ContactPersion> contactList) {
+		return custContactpersionRepo.saveAll(contactList);
+	}
 
 	@Override
 	public Optional<ContactPersion> findContactPersionById(Long contactPersionId) {
@@ -84,6 +89,11 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public CustNomineeDtls saveOrUpdateCustNomineeDtls(CustNomineeDtls custNomineeDtls) {
 		return custNomineeRepo.save(custNomineeDtls);
+	}
+	
+	@Override
+	public Iterable<CustNomineeDtls> saveAllNominees(List<CustNomineeDtls> custNomineeDtls) {
+		return custNomineeRepo.saveAll(custNomineeDtls);
 	}
 	
 	@Override

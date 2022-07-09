@@ -17,11 +17,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.app.finance.controller.ControllerManager;
-import com.app.finance.dto.CustContactPersionDto;
 import com.app.finance.dto.FDAccountDto;
 import com.app.finance.dto.LoanAccountDetailDto;
 import com.app.finance.dto.LoanCollectionRepo;
 import com.app.finance.dto.LoanRepoDto;
+import com.app.finance.model.request.CustContactPeopleReq;
 import com.app.finance.model.request.CustomerDtlsRequest;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -45,7 +45,7 @@ public class DownloadServiceImpl extends ControllerManager implements DownloadSe
 	@Override
 	public ResponseEntity<?> customerPdfDownload(Long custId) throws IOException {
 		CustomerDtlsRequest customerDto = this.getServiceManager().getCustomerService().findCustomerDtlById(custId);
-		List<CustContactPersionDto> contactPersionDtos = this.getServiceManager().getCustomerService()
+		List<CustContactPeopleReq> contactPersionDtos = this.getServiceManager().getCustomerService()
 				.findContactPersionsByCustId(custId);
 		ByteArrayInputStream bis = generatePdf(customerDto, contactPersionDtos);
 		HttpHeaders headers = new HttpHeaders();
@@ -303,7 +303,7 @@ public class DownloadServiceImpl extends ControllerManager implements DownloadSe
 		return new ByteArrayInputStream(out.toByteArray());
 	}
 
-	private ByteArrayInputStream generatePdf(CustomerDtlsRequest customerDto, List<CustContactPersionDto> contactPersionDtos) {
+	private ByteArrayInputStream generatePdf(CustomerDtlsRequest customerDto, List<CustContactPeopleReq> contactPersionDtos) {
 
 		Document document = new Document(PageSize.A4, 0, 0, 25, 25);
 		Font tableHeadingFont = FontFactory.getFont(FontFactory.TIMES_ROMAN, 14f, Font.BOLD);

@@ -1,5 +1,7 @@
 package com.app.finance.model.request;
 
+import com.app.finance.model.AddressDtls;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,11 +13,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustNomineeDtlsRequest {
+public class CustNomineeRequest {
 	private Long nomineeId;
-	private Long custId; 
+	private Long custId;
 	private String fullName;
-	private String address;
-	private String email;
-	private String phone;
+	private AddressDtls address;
 }

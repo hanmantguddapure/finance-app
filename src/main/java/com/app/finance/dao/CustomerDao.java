@@ -12,9 +12,9 @@ public interface CustomerDao {
 	public CustDetail saveOrUpdateCustomerDtl(CustDetail custDetail);
 
 	public Optional<CustDetail> findCustomerDtlById(Long custId);
-	
+
 	public CustDetail findByFullName(String fullName);;
-	
+
 	public List<CustDetail> findAllCustomers();
 
 	public int deleteCustomer(Long custId, boolean action);
@@ -34,5 +34,9 @@ public interface CustomerDao {
 	List<CustNomineeDtls> findCustNominneesByCustId(CustDetail custid);
 
 	Optional<CustNomineeDtls> findCusNomineeDtlsByNomineeId(Long nomineeId);
+
+	public Iterable<ContactPersion> saveAll(List<ContactPersion> contactList);
+	
+	public Iterable<CustNomineeDtls> saveAllNominees(List<CustNomineeDtls> custNomineeDtls);
 
 }
