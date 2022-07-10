@@ -15,7 +15,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CustContactPeopleReq {
-	private Long custId;
 	private Long contactPersionId;
 	@NotBlank(message = "fullName may not be blank/null")
 	private String fullName;

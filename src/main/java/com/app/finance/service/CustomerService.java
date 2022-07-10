@@ -14,24 +14,20 @@ public interface CustomerService {
 
 	public List<CustomerDtsResponse> findAllCustomers();
 
-	public CustomerDtsResponse editCustomerDetail(CustomerDtlsRequest customerRequest); 
+	public CustomerDtsResponse editCustomerDetail(CustomerDtlsRequest customerRequest);
+
+	public BaseResponse addNewContactPeople(CustomerDtlsRequest customerRequest);
+
+	public BaseResponse editCustContactPeople(CustomerDtlsRequest customerRequest);
+
+	public BaseResponse addCustNomineeDtls(CustomerDtlsRequest request);
+
+	public BaseResponse editCustNomineeDtls(CustomerDtlsRequest request);
 
 	/*
-	 * public CustomerDtlsRequest findCustomerDtlById(Long custId);
-	 * 
-	 * public List<CustDetail> findAllCustomers();
-	 * 
 	 * public String deleteCustomer(Long custId);
 	 * 
-	 * public CustContactPeopleReq saveOrUpdateAddressDetail(CustContactPeopleReq
-	 * contactPersionDto);
-	 * 
-	 * public CustContactPersionDto editCustContactPersion(CustContactPersionDto
-	 * contactPersionDto);
-	 * 
 	 * public List<CustContactPeopleReq> findContactPersionsByCustId(Long custId);
-	 * 
-	 * public String saveOrUpdateCustNomineeDtls(CustNomineeRequest request);
 	 */
 
 }

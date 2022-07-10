@@ -3,6 +3,7 @@ package com.app.finance.constant;
 public class BaseConstant {
 	public static final String UPDATE_SUCESS_MSG = "Updated successfully";
 	public static final String SUCESS_MSG = "Success";
+	public static final String INVALID_REQUEST = "Invalid Request";
 
 	/******* LKP TYPE ****/
 	public static final String LKP_ADDRESS_TYPE = "ADDRESS";

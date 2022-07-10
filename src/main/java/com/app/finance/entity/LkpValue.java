@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -25,7 +25,7 @@ public class LkpValue {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long lkpValueId;
-	@OneToMany
+	@ManyToOne
 	@PrimaryKeyJoinColumn
 	private LkpType lkpTypeName;
 	private String lkpValue;

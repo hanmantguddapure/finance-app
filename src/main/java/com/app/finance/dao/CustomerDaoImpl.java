@@ -57,8 +57,8 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public AddressDetail findAddressDetailByCustId(CustDetail custId) {
-		return custAddressRepo.getCustAddressDetailByPersion(custId);
+	public AddressDetail getCustAddressDetailByAddressRefId(Long custId) {
+		return custAddressRepo.getCustAddressDetailByAddressRefId(custId);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public List<ContactPersion> findContactPersionsByCustId(CustDetail custid) {
-		return custContactpersionRepo.getCustContactPersionByPersionId(custid);
+		return custContactpersionRepo.getCustContactPersionByCustId(custid);
 	}
 
 	@Override

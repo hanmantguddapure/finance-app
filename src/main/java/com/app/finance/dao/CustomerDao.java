@@ -21,7 +21,7 @@ public interface CustomerDao {
 
 	public AddressDetail saveOrUpdateAddressDetail(AddressDetail addressDetail);
 
-	public AddressDetail findAddressDetailByCustId(CustDetail custId);
+	public AddressDetail getCustAddressDetailByAddressRefId(Long custId);
 
 	public ContactPersion saveOrUpdateContactPersion(ContactPersion contactPersions);
 

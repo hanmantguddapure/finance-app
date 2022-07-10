@@ -1,12 +1,11 @@
 package com.app.finance.service;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
 import org.springframework.http.ResponseEntity;
 
 public interface DownloadService {
-	public ResponseEntity<?> customerPdfDownload(Long custId) throws IOException;
+	//public ResponseEntity<?> customerPdfDownload(Long custId) throws IOException;
 
 	public ResponseEntity<?> downloandLoanAccounts(String status);
 

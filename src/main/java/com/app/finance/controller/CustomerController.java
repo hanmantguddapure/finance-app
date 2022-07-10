@@ -29,7 +29,7 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/customer")
 public class CustomerController extends ControllerManager {
 
-	@PostMapping("/add-new")
+	@PostMapping("/add")
 	public ResponseEntity<?> addNew(@Valid @RequestBody CustomerDtlsRequest customer, Errors error)
 			throws MethodArgumentNotValidException {
 		log.traceEntry("addNew(customer){}", customer);
@@ -76,17 +76,38 @@ public class CustomerController extends ControllerManager {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	/*
-	 * @PostMapping("/contact-persions/add") public ResponseEntity<?>
-	 * addNewContactPersion(@Valid @RequestBody CustContactPeopleReq custContact,
-	 * Errors error) { logger.info(":Adding New Contact Persion Of Customer--" +
-	 * custContact.getFullName()); if (error.hasErrors()) return new
-	 * ResponseEntity<>( error.getAllErrors().stream().map(data ->
-	 * data.getDefaultMessage()).collect(Collectors.toList()),
-	 * HttpStatus.NOT_ACCEPTABLE); return new ResponseEntity<>(
-	 * this.getServiceManager().getCustomerService().saveOrUpdateAddressDetail(
-	 * custContact), HttpStatus.ACCEPTED); }
-	 */
+	@PostMapping("/contact-people/add")
+	public ResponseEntity<?> addNewContactPersion(@Valid @RequestBody CustomerDtlsRequest customer) {
+		BaseResponse baseResponse = this.getServiceManager().getCustomerService().addNewContactPeople(customer);
+		Response<BaseResponse> response = Response.<BaseResponse>builder().response(baseResponse)
+				.status(HttpStatus.OK.value()).build();
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@PutMapping("/contact-persions/edit")
+	public ResponseEntity<?> editContactPersionsDetails(@Valid @RequestBody CustomerDtlsRequest customer) {
+		BaseResponse baseResponse = this.getServiceManager().getCustomerService().editCustContactPeople(customer);
+		Response<BaseResponse> response = Response.<BaseResponse>builder().response(baseResponse)
+				.status(HttpStatus.OK.value()).build();
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@PostMapping("/nominee/add")
+	public ResponseEntity<?> addNominee(@RequestBody CustomerDtlsRequest customer) {
+		BaseResponse baseResponse = this.getServiceManager().getCustomerService().addCustNomineeDtls(customer);
+		Response<BaseResponse> response = Response.<BaseResponse>builder().response(baseResponse)
+				.status(HttpStatus.OK.value()).build();
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@PutMapping("/nominee/edit")
+	public ResponseEntity<?> editNominee(@Valid @RequestBody CustomerDtlsRequest customer) {
+		BaseResponse baseResponse = this.getServiceManager().getCustomerService().editCustNomineeDtls(customer);
+		Response<BaseResponse> response = Response.<BaseResponse>builder().response(baseResponse)
+				.status(HttpStatus.OK.value()).build();
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	 
 	/*
 	 * @DeleteMapping("/delete/{custId}") public ResponseEntity<?>
 	 * deleteCustomerById(@PathVariable Long custId) { if (custId == null) throw new
@@ -114,27 +135,8 @@ public class CustomerController extends ControllerManager {
 	 * (custId == null) throw new NullPointerException("custId Is Empty"); return
 	 * new ResponseEntity<>(this.getServiceManager().getCustomerService().
 	 * findContactPersionsByCustId(custId), HttpStatus.OK); }
+	
 	 * 
-	 * @PutMapping("/contact-persions/edit") public ResponseEntity<?>
-	 * editContactPersionsDetails(@Valid @RequestBody CustContactPeopleReq
-	 * custContact, Errors error) { logger.info(":Editing Contact Persion Details--"
-	 * + custContact.getFullName()); if (error.hasErrors()) return new
-	 * ResponseEntity<>( error.getAllErrors().stream().map(data ->
-	 * data.getDefaultMessage()).collect(Collectors.toList()),
-	 * HttpStatus.NOT_ACCEPTABLE); return new ResponseEntity<>(
-	 * this.getServiceManager().getCustomerService().saveOrUpdateAddressDetail(
-	 * custContact), HttpStatus.ACCEPTED); }
-	 * 
-	 * 
-	 * @PostMapping("/nominee/add") public ResponseEntity<?>
-	 * addNominee(@Valid @RequestBody CustNomineeRequest custNomineeDtlsRequest,
-	 * Errors error) { logger.info(":Adding New Nominnee--"); if (error.hasErrors())
-	 * return new ResponseEntity<>( error.getAllErrors().stream().map(data ->
-	 * data.getDefaultMessage()).collect(Collectors.toList()),
-	 * HttpStatus.NOT_ACCEPTABLE); String msg =
-	 * this.getServiceManager().getCustomerService().saveOrUpdateCustNomineeDtls(
-	 * custNomineeDtlsRequest); Response<String> response =
-	 * Response.<String>builder().response(msg).status(HttpStatus.OK.value()).build(
-	 * ); return new ResponseEntity<>(response, HttpStatus.ACCEPTED); }
 	 */
+	
 }

@@ -4,7 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -28,23 +29,23 @@ public class AddressDetail {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long addressId;
 	private Long addressRefId;
-	@OneToMany
-	@PrimaryKeyJoinColumn
+	@ManyToOne
+	@JoinColumn(name = "lkp_value_id")
 	private LkpValue addressType;
 	private String nativePlace;
 	private String address;
-	@OneToMany
+	@ManyToOne
 	@PrimaryKeyJoinColumn
-	private Long city;
-	@OneToMany
+	private LkpValue city;
+	@ManyToOne
 	@PrimaryKeyJoinColumn
-	private Long district;
-	@OneToMany
+	private LkpValue district;
+	@ManyToOne
 	@PrimaryKeyJoinColumn
-	private Long state;
-	@OneToMany
+	private LkpValue state;
+	@ManyToOne
 	@PrimaryKeyJoinColumn
-	private Long country;
+	private LkpValue country;
 	private Integer zipCode;
 	private String email;
 	private String stdCode;
