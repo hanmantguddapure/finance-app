@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -34,18 +33,23 @@ public class AddressDetail {
 	private LkpValue addressType;
 	private String nativePlace;
 	private String address;
-	@ManyToOne
-	@PrimaryKeyJoinColumn
-	private LkpValue city;
-	@ManyToOne
-	@PrimaryKeyJoinColumn
-	private LkpValue district;
-	@ManyToOne
-	@PrimaryKeyJoinColumn
-	private LkpValue state;
-	@ManyToOne
-	@PrimaryKeyJoinColumn
-	private LkpValue country;
+	/*
+	 * @ManyToOne
+	 * 
+	 * @PrimaryKeyJoinColumn private LkpValue city;
+	 * 
+	 * @ManyToOne
+	 * 
+	 * @PrimaryKeyJoinColumn private LkpValue district;
+	 * 
+	 * @ManyToOne
+	 * 
+	 * @PrimaryKeyJoinColumn private LkpValue state;
+	 * 
+	 * @ManyToOne
+	 * 
+	 * @PrimaryKeyJoinColumn private LkpValue country;
+	 */
 	private Integer zipCode;
 	private String email;
 	private String stdCode;
