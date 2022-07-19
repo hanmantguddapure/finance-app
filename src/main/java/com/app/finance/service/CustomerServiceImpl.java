@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import com.app.finance.constant.BaseConstant;
 import com.app.finance.dto.BaseResponse;
@@ -38,11 +39,12 @@ public class CustomerServiceImpl extends DaoServicess implements CustomerService
 	@Override
 	public BaseResponse createNewCustomer(CustomerDtlsRequest customerRequest) {
 		log.traceEntry("createNewCustomer(customer){}", customerRequest);
-		CustDetail customerDtl = this.getDaoManager().getCustomerDao()
-				.findByFullName(customerRequest.getFullName().trim());
-		if (!Objects.isNull(customerDtl))
-			throw new DuplicateRecord("Already customer exist with this name");
-
+		if (StringUtils.isEmpty(customerRequest.getCustId())) {
+			CustDetail customerDtl = this.getDaoManager().getCustomerDao()
+					.findByFullName(customerRequest.getFullName().trim());
+			if (!Objects.isNull(customerDtl))
+				throw new DuplicateRecord("Already customer exist with this name");
+		}
 		CustDetail custDetail = saveOrUpdateCustomerDetails(customerRequest);
 
 		if (customerRequest.getAddress() != null) {
@@ -171,7 +173,14 @@ public class CustomerServiceImpl extends DaoServicess implements CustomerService
 		LkpType lkpType = this.getDaoManager().getLkpDao().findByLkpTypeName(BaseConstant.LKP_ADDRESS_TYPE);
 		LkpValue addressType = this.getDaoManager().getLkpDao()
 				.findByLkpValueAndLkpTypeName(BaseConstant.LKP_ADDRESS_TYPE, lkpType);
-		AddressDetail addressDetail = AddressDetail.builder().address(addressDtlReq.getAddress())
+		Long addressId = null;
+		if (!StringUtils.isEmpty(customerRequest.getCustId())) {
+			AddressDetail custAddressDetailEntity = this.getDaoManager().getCustomerDao()
+					.getCustAddressDetailByAddressRefId(customerRequest.getCustId());
+			if (!StringUtils.isEmpty(custAddressDetailEntity.getAddressId()))
+				addressId = custAddressDetailEntity.getAddressId();
+		}
+		AddressDetail addressDetail = AddressDetail.builder().addressId(addressId).address(addressDtlReq.getAddress())
 				.zipCode(addressDtlReq.getZipCode()).email(addressDtlReq.getEmail())
 				.phoneNo1(addressDtlReq.getPhoneNo()).nativePlace(addressDtlReq.getNativePlace())
 				.addressType(addressType).addressRefId(customerRequest.getCustId()).build();
