@@ -30,6 +30,7 @@ public class CustNomineeDtls {
 	@JoinColumn(name = "cust_id")
 	private CustDetail custId;
 	private String fullName;
+	private String relation;
 	private String address;
 	private String email;
 	private String phone;

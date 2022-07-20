@@ -89,15 +89,15 @@ public class CustomerServiceImpl extends DaoServicess implements CustomerService
 
 		if (!ObjectUtils.isEmpty(custNomineeDtls))
 			customerNomineeList = custNomineeDtls.stream().map(data -> {
-				return CustomerNomineeDtlsResponse.builder().nomineeId(data.getNomineeId()).fullName(data.getFullName())
+				return CustomerNomineeDtlsResponse.builder().nomineeId(data.getNomineeId()).relation(data.getRelation())
+						.fullName(data.getFullName())
 						.address(AddressDtls.builder().address(data.getAddress()).phoneNo(data.getPhone()).build())
 						.build();
 			}).collect(Collectors.toList());
 
 		return CustomerDtsResponse.builder().custId(custDetail.getCustId()).fullName(custDetail.getFullName())
 				.profession(custDetail.getProfession()).adharNo(custDetail.getAdharNo()).panNo(custDetail.getPanNo())
-				.address(cusAddressDtls).contactPeopleDtls(contactPeoplList).nomineeDtlsResponse(customerNomineeList)
-				.build();
+				.address(cusAddressDtls).contactPeopleDtls(contactPeoplList).nomineeDtls(customerNomineeList).build();
 	}
 
 	@Override
@@ -177,7 +177,7 @@ public class CustomerServiceImpl extends DaoServicess implements CustomerService
 		if (!StringUtils.isEmpty(customerRequest.getCustId())) {
 			AddressDetail custAddressDetailEntity = this.getDaoManager().getCustomerDao()
 					.getCustAddressDetailByAddressRefId(customerRequest.getCustId());
-			if (!StringUtils.isEmpty(custAddressDetailEntity.getAddressId()))
+			if (null != custAddressDetailEntity && !StringUtils.isEmpty(custAddressDetailEntity.getAddressId()))
 				addressId = custAddressDetailEntity.getAddressId();
 		}
 		AddressDetail addressDetail = AddressDetail.builder().addressId(addressId).address(addressDtlReq.getAddress())
@@ -199,7 +199,8 @@ public class CustomerServiceImpl extends DaoServicess implements CustomerService
 	public void saveAllNominee(List<CustNomineeRequest> list, CustDetail custDetail) {
 		List<CustNomineeDtls> custNomineeDtls = list.stream().map(data -> {
 			return CustNomineeDtls.builder().custId(custDetail).nomineeId(data.getNomineeId())
-					.fullName(data.getFullName()).build();
+					.fullName(data.getFullName()).address(data.getAddress().getAddress())
+					.phone(data.getAddress().getPhoneNo()).relation(data.getRelation()).build();
 		}).collect(Collectors.toList());
 
 		this.getDaoManager().getCustomerDao().saveAllNominees(custNomineeDtls);

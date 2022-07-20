@@ -24,5 +24,5 @@ public class CustomerDtsResponse {
 	private String panNo;
 	private AddressDtls address;
 	private List<CustomerContactPeopleDtls> contactPeopleDtls;
-	private List<CustomerNomineeDtlsResponse> nomineeDtlsResponse;
+	private List<CustomerNomineeDtlsResponse> nomineeDtls;
 }

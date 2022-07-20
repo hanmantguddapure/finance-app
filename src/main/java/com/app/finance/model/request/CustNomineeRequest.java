@@ -17,5 +17,6 @@ public class CustNomineeRequest {
 	private Long nomineeId;
 	private Long custId;
 	private String fullName;
+	private String relation;
 	private AddressDtls address;
 }

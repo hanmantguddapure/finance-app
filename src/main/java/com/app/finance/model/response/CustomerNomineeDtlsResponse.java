@@ -16,5 +16,6 @@ import lombok.Setter;
 public class CustomerNomineeDtlsResponse {
 	private Long nomineeId;
 	private String fullName;
+	private String relation;
 	private AddressDtls address;
 }
