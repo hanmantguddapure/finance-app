@@ -111,6 +111,7 @@ public class ExpenseServiceImpl extends DaoServicess implements ExpenseService {
 				ExpenseDto expenseDto = new ExpenseDto();
 				expenseDto.setAmount(expenseDtl.getAmount());
 				expenseDto.setRemark(expenseDtl.getRemark());
+				expenseDto.setExpenseId(expenseDtl.getExpenseId());
 				expenseDto.setExpenseType(expenseDtl.getExpenseType().getExpenseType());
 				expenseDto.setFromDate(expenseDtl.getFromDate());
 				expenseDto.setToDate(expenseDtl.getToDate());
