@@ -215,4 +215,15 @@ public class LoanController extends ControllerManager {
 				DateUtils.convertStringToLocalDate(fromDate), DateUtils.convertStringToLocalDate(toDate));
 	}
 
+	@GetMapping("/find-all/{status}/{fromDate}/{toDate}")
+	public ResponseEntity<?> findAllByStatus(@PathVariable String status, @PathVariable String fromDate,
+			@PathVariable String toDate) {
+		logger.info(":Find All Loan Accounts By Status--" + status);
+		if (status == null || status.isEmpty())
+			throw new NullPointerException("Input Data Missing");
+		return ResponseEntity
+				.ok(this.getServiceManager().getLoanService().findByStatusAndDate(status, fromDate, toDate));
+
+	}
+
 }
