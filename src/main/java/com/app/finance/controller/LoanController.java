@@ -70,7 +70,7 @@ public class LoanController extends ControllerManager {
 		logger.info(":Find All Loan Accounts By Status--" + status);
 		if (status == null || status.isEmpty())
 			throw new NullPointerException("Input Data Missing");
-		return ResponseEntity.ok(this.getServiceManager().getLoanService().findByStatus(status));
+		return ResponseEntity.ok(this.getServiceManager().getLoanService().findByStatusAndDate(status,null,null));
 
 	}
 

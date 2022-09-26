@@ -42,4 +42,5 @@ public interface LoanAccountDao {
 	public List<LoanPenalty> findPenaltyByLoanAccountIdIn(List<LoanAccountDetail> accountDetail);
 	
 	public LoanInstallmentsDetail findBypaymentId(Long paymentId);
+	public List<LoanAccountDetail> findByStatusAndDate(String status, String fromDate, String toDate);
 }

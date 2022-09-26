@@ -17,7 +17,7 @@ public interface LoanAccountService {
 
 	public LoanAccountDetailDto findByLoanId(Long loanAccountNo);
 
-	public List<LoanRepoDto> findByStatus(String status);
+	public List<LoanRepoDto> findByStatusAndDate(String status, String fromDate, String toDate);
 
 	public List<LoanRepoDto> findAllByCustId(Long custId);
 

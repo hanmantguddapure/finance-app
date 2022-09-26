@@ -104,10 +104,10 @@ public class LoanAccountServiceImpl extends DaoServicess implements LoanAccountS
 	}
 
 	@Override
-	public List<LoanRepoDto> findByStatus(String status) {
+	public List<LoanRepoDto> findByStatusAndDate(String status, String fromDate, String toDate) {
 
-		List<LoanRepoDto> accountDetailRepos = this.getDaoManager().getLoanSectionDao().findByStatus(status).stream()
-				.map(accountDetail -> {
+		List<LoanRepoDto> accountDetailRepos = this.getDaoManager().getLoanSectionDao()
+				.findByStatusAndDate(status, fromDate, toDate).stream().map(accountDetail -> {
 					LoanRepoDto loanRepoDto = new LoanRepoDto();
 					List<LoanPenalty> loanPenalties = this.getDaoManager().getLoanSectionDao()
 							.findPendaltyByLoanId(accountDetail);

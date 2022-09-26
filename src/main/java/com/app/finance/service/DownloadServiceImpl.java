@@ -54,7 +54,7 @@ public class DownloadServiceImpl extends ControllerManager implements DownloadSe
 
 	@Override
 	public ResponseEntity<?> downloandLoanAccounts(String status) {
-		List<LoanRepoDto> loanRepolst = this.getServiceManager().getLoanService().findByStatus(status);
+		List<LoanRepoDto> loanRepolst = this.getServiceManager().getLoanService().findByStatusAndDate(status,null,null);
 		ByteArrayInputStream bis = generateLoanAccountsPdf(loanRepolst);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Disposition", "inline; filename=" + "LoanReport_" + LocalDate.now() + ".pdf");

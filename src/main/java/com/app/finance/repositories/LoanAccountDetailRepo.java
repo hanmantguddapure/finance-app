@@ -23,4 +23,6 @@ public interface LoanAccountDetailRepo extends CrudRepository<LoanAccountDetail,
 	@Query("update LoanAccountDetail loanDetail SET loanDetail.loanStatus=:status,loanDetail.lastUpdated=:lastUpdated,loanDetail.remark=:remark where loanDetail.loanAccountNo=:loanAccountNo")
 	public int closeLoanAccount(@Param("status") String status, @Param("lastUpdated") LocalDate lastUpdated,
 			@Param("remark") String remark, @Param("loanAccountNo") Long loanAccountNo);
+	
+	public List<LoanAccountDetail> findByLoanStatusAndLoanStartDateBetween(String loanStatus,LocalDate fromDate,LocalDate toDate);
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import com.app.finance.entity.CustDetail;
 import com.app.finance.entity.LoanAccountDetail;
@@ -107,6 +108,17 @@ public class LoanAccountDaoImpl implements LoanAccountDao {
 	@Override
 	public LoanInstallmentsDetail findBypaymentId(Long paymentId) {
 		return loandEMIDetailRepo.findBypaymentId(paymentId);
+	}
+
+	@Override
+	public List<LoanAccountDetail> findByStatusAndDate(String status, String fromDate, String toDate) {
+		if (status.equalsIgnoreCase("All"))
+			return (List<LoanAccountDetail>) loanAccountDetailRepo.findAll();
+		if (!StringUtils.isEmpty(fromDate) && !StringUtils.isEmpty(toDate)) {
+			return loanAccountDetailRepo.findByLoanStatusAndLoanStartDateBetween(status, LocalDate.parse(fromDate),
+					LocalDate.parse(toDate));
+		} else
+			return loanAccountDetailRepo.findByLoanStatus(status);
 	}
 
 }
