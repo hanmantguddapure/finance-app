@@ -279,7 +279,7 @@ public class LoanAccountServiceImpl extends DaoServicess implements LoanAccountS
 		loanEMIDetail.setLoanAccouuntNo(accountDetail.get());
 		loanEMIDetail.setPaymentAmount(emiDetail.getPayment());
 		loanEMIDetail.setPaymentMode(emiDetail.getPaymentMethod());
-		loanEMIDetail.setPaymentDate(LocalDate.now());
+		loanEMIDetail.setPaymentDate(LocalDate.parse(emiDetail.getPaymentDate()));
 		loanEMIDetail = this.getDaoManager().getLoanSectionDao().saveOrUpdateEMI(loanEMIDetail);
 		Double currCollection = accountDetail.get().getTotalCollection() != null
 				? accountDetail.get().getTotalCollection()
