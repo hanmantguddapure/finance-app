@@ -1,0 +1,15 @@
+ALTER TABLE test.contact_persions RENAME COLUMN persion_id TO cust_id;
+ALTER TABLE test.contact_persions DROP COLUMN cust_id;
+
+ALTER TABLE test.customer_detail RENAME COLUMN panno TO pan_no;
+ALTER TABLE test.customer_detail DROP COLUMN pan_no;
+
+ALTER TABLE test.address_details RENAME COLUMN persion_id TO address_ref_id;
+
+
+ALTER TABLE test.customer_detail RENAME COLUMN profession_name TO profession;
+ALTER TABLE test.customer_detail DROP COLUMN profession;
+
+
+ALTER TABLE test.contact_persions RENAME COLUMN designation TO profession;
+ALTER TABLE test.contact_persions DROP COLUMN profession;
