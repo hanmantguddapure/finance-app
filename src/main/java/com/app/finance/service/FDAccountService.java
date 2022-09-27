@@ -10,7 +10,7 @@ import com.app.finance.entity.CustDetail;
 public interface FDAccountService {
 	public FDAccountDto saveorUpdateFDAccount(FDAccountDto fdAccountDto);
 
-	public List<FDAccountDto> findByIsActive(Byte isActive);
+	public List<FDAccountDto> findByIsActive(Byte isActive,String fromDate,String toDate);
 
 	public List<FDAccountDto> findByCustId(Long custId);
 

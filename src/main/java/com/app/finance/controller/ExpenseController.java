@@ -58,15 +58,21 @@ public class ExpenseController extends ControllerManager {
 	}
 
 	@GetMapping(value = "/expense-type/{expenseType}")
-	public ResponseEntity<?> getExpensesByExpenseType(@PathVariable("expenseType") String expenseType) {
+	public ResponseEntity<?> getExpensesByExpenseType(@PathVariable("expenseType") Long expenseTypeId) {
 
-		return ResponseEntity.ok(this.getServiceManager().getExpenseService().findExpensesByExpenseType(expenseType));
+		return ResponseEntity.ok(this.getServiceManager().getExpenseService().findExpensesByExpenseType(expenseTypeId));
 	}
 
 	@GetMapping(value = "/get-expense-between/{fromDate}/{toDate}")
 	public ResponseEntity<?> getExpensesByBewteenDate(@PathVariable String fromDate, @PathVariable String toDate) {
 		return ResponseEntity.ok(this.getServiceManager().getExpenseService().findByFromDateBetween(
-				DateUtils.convertStringToLocalDate(fromDate), DateUtils.convertStringToLocalDate(toDate)));
+				null,DateUtils.convertStringToLocalDate(fromDate), DateUtils.convertStringToLocalDate(toDate)));
+	}
+	
+	@GetMapping(value = "/get-expense-between/{expenseType}/{fromDate}/{toDate}")
+	public ResponseEntity<?> getExpensesByBewteenDate(@PathVariable Long expenseType,@PathVariable String fromDate, @PathVariable String toDate) {
+		return ResponseEntity.ok(this.getServiceManager().getExpenseService().findByFromDateBetween(
+				expenseType,DateUtils.convertStringToLocalDate(fromDate), DateUtils.convertStringToLocalDate(toDate)));
 	}
 
 	@PutMapping(value = "/rename-expense-type/{expenseTypeId}/{newExpenseTypeName}")

@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.app.finance.dto.FDAccountDto;
 import com.app.finance.dto.FDInterestDto;
@@ -95,13 +96,16 @@ public class FDAccountServiceImpl extends DaoServicess implements FDAccountServi
 	}
 
 	@Override
-	public List<FDAccountDto> findByIsActive(Byte isActive) {
+	public List<FDAccountDto> findByIsActive(Byte isActive,String fromDate,String toDate) {
 		List<FDAccount> fdAccounts = null;
 		if (isActive == null)
 			throw new NullPointerException("isActive not be null");
 		if (isActive == 2)
 			fdAccounts = (List<FDAccount>) this.getDaoManager().getFdAccountDao().findAllFDAccounts();
-		else
+		else if (!StringUtils.isEmpty(fromDate) && !StringUtils.isEmpty(toDate)) {
+			fdAccounts = (List<FDAccount>) this.getDaoManager().getFdAccountDao().findByIsActive(isActive,
+					LocalDate.parse(fromDate), LocalDate.parse(toDate));
+		} else
 			fdAccounts = this.getDaoManager().getFdAccountDao().findByIsActive(isActive);
 		if (null != fdAccounts && fdAccounts.size() < 0)
 			throw new RecordNotFound("list is empty");

@@ -1,5 +1,6 @@
 package com.app.finance.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,5 +59,11 @@ public class FDAccountDaoImpl implements FDAccountDao {
 	public List<FDInterest> findPaidInterestByFdAccountNos(List<FDAccount> fdAccountId) {
 		return fdInterestRepo.findByFdAccountIdIn(fdAccountId);
 	}
+	
+	@Override
+	public List<FDAccount> findByIsActive(Byte isActive,LocalDate fromDate,LocalDate toDate) {
+		return this.fdAccountRepo.findByIsActiveAndStartDateBetween(isActive,fromDate,toDate);
+	}
+
 
 }

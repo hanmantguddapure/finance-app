@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.app.finance.entity.ExpenseDetail;
+import com.app.finance.entity.ExpenseTypes;
 
 public interface ExpenseDetailRepo extends CrudRepository<ExpenseDetail, Long> {
 	public List<ExpenseDetail> findExpensesByFromDate(LocalDate fromDate);
@@ -20,5 +21,9 @@ public interface ExpenseDetailRepo extends CrudRepository<ExpenseDetail, Long> {
 
 	@Query(" from ExpenseDetail where expenseType.expenseType=:expenseType")
 	List<ExpenseDetail> getExpenseDetailByExpenseType(@Param("expenseType") String expenseType);
+
+	List<ExpenseDetail> findByExpenseTypeAndFromDateBetween(ExpenseTypes expenseTypeId, LocalDate fromDate, LocalDate toDate);
+
+	public List<ExpenseDetail> findByExpenseType(ExpenseTypes expenseTypeId);
 
 }

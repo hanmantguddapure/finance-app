@@ -1,7 +1,6 @@
 package com.app.finance.service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -79,11 +78,18 @@ public class ExpenseServiceImpl extends DaoServicess implements ExpenseService {
 	}
 
 	@Override
-	public List<ExpenseDto> findByFromDateBetween(LocalDate fromDate, LocalDate toDate) {
+	public List<ExpenseDto> findByFromDateBetween(Long expenseTypeId,LocalDate fromDate, LocalDate toDate) {
 		if (fromDate == null)
 			throw new NullPointerException("fromDate/toDate may not be null");
-		List<ExpenseDetail> expenseDetails = this.getDaoManager().getExpenseDao().findByFromDateBetween(fromDate,
-				toDate);
+		List<ExpenseDetail> expenseDetails=null;
+		if (!StringUtils.isEmpty(expenseTypeId)) {
+			Optional<ExpenseTypes> expenseTypesOptional = this.getDaoManager().getExpenseDao()
+					.getExpenseTypeById(expenseTypeId);
+			expenseDetails = this.getDaoManager().getExpenseDao().findByTypeAndFromDateBetween(expenseTypesOptional.get(), fromDate,
+					toDate);
+		} else {
+			expenseDetails = this.getDaoManager().getExpenseDao().findByFromDateBetween(fromDate, toDate);
+		}
 		if (expenseDetails != null && expenseDetails.size() > 0) {
 			List<ExpenseDto> expenseDtos = expenseDetails.stream().map(expenseDtl -> {
 				ExpenseDto expenseDto = new ExpenseDto();
@@ -101,11 +107,14 @@ public class ExpenseServiceImpl extends DaoServicess implements ExpenseService {
 	}
 
 	@Override
-	public List<ExpenseDto> findExpensesByExpenseType(String expenseType) {
-		if (StringUtils.isEmpty(expenseType))
-			throw new NullPointerException("fromDate may not be null");
-		List<ExpenseDetail> expenseDetails = this.getDaoManager().getExpenseDao()
-				.getExpenseDetailBExpenseType(expenseType);
+	public List<ExpenseDto> findExpensesByExpenseType(Long expenseTypeId) {
+		if (StringUtils.isEmpty(expenseTypeId))
+			throw new NullPointerException("expenseTypeId may not be null");
+		Optional<ExpenseTypes> expenseTypes=this.getDaoManager().getExpenseDao().getExpenseTypeById(expenseTypeId);
+		List<ExpenseDetail> expenseDetails =null;
+		if(expenseTypes.isPresent())
+		expenseDetails = this.getDaoManager().getExpenseDao()
+				.getExpenseDetailBExpenseType(expenseTypes.get());
 		if (expenseDetails != null && expenseDetails.size() > 0) {
 			List<ExpenseDto> expenseDtos = expenseDetails.stream().map(expenseDtl -> {
 				ExpenseDto expenseDto = new ExpenseDto();

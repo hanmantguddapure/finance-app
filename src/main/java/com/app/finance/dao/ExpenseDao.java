@@ -22,7 +22,9 @@ public interface ExpenseDao {
 
 	public Optional<ExpenseTypes> getExpenseTypeById(Long expenseTypeId);
 
-	public List<ExpenseDetail> getExpenseDetailBExpenseType(String expenseType);
+	public List<ExpenseDetail> getExpenseDetailBExpenseType(ExpenseTypes expenseTypeId);
 
 	public void deleteExpenseDtl(Long expenseDtlId);
+
+	public List<ExpenseDetail> findByTypeAndFromDateBetween(ExpenseTypes expenseType, LocalDate fromDate, LocalDate toDate);
 }

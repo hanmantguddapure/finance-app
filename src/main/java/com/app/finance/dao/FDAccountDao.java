@@ -1,5 +1,6 @@
 package com.app.finance.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ public interface FDAccountDao {
 	public Iterable<FDAccount> findAllFDAccounts();
 
 	public List<FDAccount> findByIsActive(Byte isActive);
+
+	public List<FDAccount> findByIsActive(Byte isActive, LocalDate fromDate, LocalDate toDate);
 
 	public FDInterest saveOrUpdateInterest(FDInterest fdInterest);
 

@@ -18,9 +18,9 @@ public interface ExpenseService {
 
 	public List<ExpenseDto> findExpensesByFromDate(LocalDate fromDate);
 
-	public List<ExpenseDto> findByFromDateBetween(LocalDate fromDate, LocalDate toDate);
+	public List<ExpenseDto> findByFromDateBetween(Long expenseTypeId,LocalDate fromDate, LocalDate toDate);
 
-	public List<ExpenseDto> findExpensesByExpenseType(String expenseType);
+	public List<ExpenseDto> findExpensesByExpenseType(Long expenseTypeId);
 	
 	/** This method update the expense type name.
 	 * 

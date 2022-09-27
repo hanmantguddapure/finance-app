@@ -55,12 +55,17 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	}
 
 	@Override
-	public List<ExpenseDetail> getExpenseDetailBExpenseType(String expenseType) {
-		return expenseDetailRepo.getExpenseDetailByExpenseType(expenseType);
+	public List<ExpenseDetail> getExpenseDetailBExpenseType(ExpenseTypes expenseTypeId) {
+		return expenseDetailRepo.findByExpenseType(expenseTypeId);
 	}
 
 	// @Override
 	public void deleteExpenseDtl(Long expenseDtlId) {
 		expenseDetailRepo.deleteById(expenseDtlId);
+	}
+	
+	@Override
+	public List<ExpenseDetail> findByTypeAndFromDateBetween(ExpenseTypes expenseType,LocalDate fromDate, LocalDate toDate) {
+		return expenseDetailRepo.findByExpenseTypeAndFromDateBetween(expenseType,fromDate, toDate);
 	}
 }

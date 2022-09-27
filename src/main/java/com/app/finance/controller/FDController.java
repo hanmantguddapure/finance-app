@@ -56,7 +56,16 @@ public class FDController extends ControllerManager {
 	@RequestMapping(value = "/find-all/{fdStatus}")
 	public ResponseEntity<?> getFdsBySatus(@PathVariable Byte fdStatus) throws IOException {
 		logger.info(":find all fd statuds of--", fdStatus);
-		return ResponseEntity.ok(this.getServiceManager().getFdAccountService().findByIsActive(fdStatus));
+		return ResponseEntity.ok(this.getServiceManager().getFdAccountService().findByIsActive(fdStatus, null, null));
+
+	}
+
+	@RequestMapping(value = "/find-all/{fdStatus}/{fromDate}/{toDate}")
+	public ResponseEntity<?> getFdsBySatus(@PathVariable Byte fdStatus, @PathVariable String fromDate,
+			@PathVariable String toDate) throws IOException {
+		logger.info(":find all fd statuds of--", fdStatus);
+		return ResponseEntity
+				.ok(this.getServiceManager().getFdAccountService().findByIsActive(fdStatus, fromDate, toDate));
 
 	}
 
