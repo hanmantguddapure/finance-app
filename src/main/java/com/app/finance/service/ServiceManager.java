@@ -18,4 +18,6 @@ public interface ServiceManager {
 	public DashBoardService getDashBoardService();
 
 	public SavingAccountService getSavingAccountService();
+	
+	public PersonalLoanService getPersonalLoanService();
 }

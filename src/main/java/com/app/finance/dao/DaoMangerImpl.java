@@ -23,6 +23,8 @@ public class DaoMangerImpl implements DaoManger {
 	private SavingAccDao savingAccDao;
 	@Autowired
 	private LkpDao lkpDao;
+	@Autowired
+	private PersonalLoanAccountDao personalLoanAccountDao;
 
 	public AuthDao getAuthDao() {
 		return authDao;
@@ -100,4 +102,11 @@ public class DaoMangerImpl implements DaoManger {
 		this.lkpDao = lkpDao;
 	}
 
+	public PersonalLoanAccountDao getPersonalLoanAccountDao() {
+		return personalLoanAccountDao;
+	}
+
+	public void setPersonalLoanAccountDao(PersonalLoanAccountDao personalLoanAccountDao) {
+		this.personalLoanAccountDao = personalLoanAccountDao;
+	}
 }

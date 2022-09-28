@@ -18,5 +18,7 @@ public interface DaoManger {
 	public SavingAccDao getSavingAccDao();
 
 	public LkpDao getLkpDao();
+	
+	public PersonalLoanAccountDao getPersonalLoanAccountDao();
 
 }

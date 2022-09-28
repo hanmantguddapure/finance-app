@@ -25,6 +25,8 @@ public class ServiceManagerImpl implements ServiceManager {
 	private FirmLoanService firmLoanService;
 	@Autowired
 	private SavingAccountService savingAccountService;
+	@Autowired
+	private PersonalLoanService personalLoanService;
 
 	public AuthSerivice getAuthService() {
 		return authService;
@@ -97,4 +99,13 @@ public class ServiceManagerImpl implements ServiceManager {
 	public void setSavingAccountService(SavingAccountService savingAccountService) {
 		this.savingAccountService = savingAccountService;
 	}
+
+	public PersonalLoanService getPersonalLoanService() {
+		return personalLoanService;
+	}
+
+	public void setPersonalLoanService(PersonalLoanService personalLoanService) {
+		this.personalLoanService = personalLoanService;
+	}
+	
 }
