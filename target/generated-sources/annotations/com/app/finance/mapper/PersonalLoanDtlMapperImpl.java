@@ -8,12 +8,15 @@ import com.app.finance.model.request.PersonalLoanDtlsReq;
 import com.app.finance.model.request.PersonalLoanInstallmentDtlReq;
 import com.app.finance.model.response.PersonalLoanAccountResponse;
 import com.app.finance.model.response.PersonalLoanAccountResponse.PersonalLoanAccountResponseBuilder;
+import com.app.finance.model.response.PersonalLoanInstallmentDtlResp;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-09-28T17:24:08+0530",
+    date = "2022-09-30T11:49:19+0530",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_321 (Oracle Corporation)"
 )
 @Component
@@ -27,7 +30,6 @@ public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
 
         PersonalLoanBuilder personalLoan = PersonalLoan.builder();
 
-        personalLoan.loanId( request.getLoanId() );
         personalLoan.loanFrom( request.getLoanFrom() );
         personalLoan.loanAmt( request.getLoanAmt() );
         personalLoan.monthlyEMIAmt( request.getMonthlyEMIAmt() );
@@ -43,7 +45,7 @@ public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
     }
 
     @Override
-    public PersonalLoanInstallmentsDtls mapToPersonalLoanInstallmentEntity(PersonalLoanInstallmentDtlReq request) {
+    public PersonalLoanInstallmentsDtls map(PersonalLoanInstallmentDtlReq request) {
         if ( request == null ) {
             return null;
         }
@@ -59,14 +61,13 @@ public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
     }
 
     @Override
-    public PersonalLoanAccountResponse mapToResponse(PersonalLoan request) {
+    public PersonalLoanAccountResponse map(PersonalLoan request) {
         if ( request == null ) {
             return null;
         }
 
         PersonalLoanAccountResponseBuilder personalLoanAccountResponse = PersonalLoanAccountResponse.builder();
 
-        personalLoanAccountResponse.loanId( request.getLoanId() );
         personalLoanAccountResponse.loanFrom( request.getLoanFrom() );
         personalLoanAccountResponse.loanAmt( request.getLoanAmt() );
         personalLoanAccountResponse.monthlyEMIAmt( request.getMonthlyEMIAmt() );
@@ -79,5 +80,19 @@ public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
         personalLoanAccountResponse.loanStatus( request.getLoanStatus() );
 
         return personalLoanAccountResponse.build();
+    }
+
+    @Override
+    public List<PersonalLoanInstallmentDtlResp> map(List<PersonalLoanInstallmentsDtls> request) {
+        if ( request == null ) {
+            return null;
+        }
+
+        List<PersonalLoanInstallmentDtlResp> list = new ArrayList<PersonalLoanInstallmentDtlResp>( request.size() );
+        for ( PersonalLoanInstallmentsDtls personalLoanInstallmentsDtls : request ) {
+            list.add( map( personalLoanInstallmentsDtls ) );
+        }
+
+        return list;
     }
 }

@@ -26,5 +26,5 @@ public class PersonalLoanAccountResponse {
 	private Float loanInterest;
 	private String remark;
 	private String loanStatus;
-	private List<PersonalLoanInstallmentDtl> installmentDtlsLst;
+	private List<PersonalLoanInstallmentDtlResp> installmentDtlsLst;
 }

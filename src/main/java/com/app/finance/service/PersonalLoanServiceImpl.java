@@ -14,7 +14,7 @@ import com.app.finance.mapper.PersonalLoanDtlMapper;
 import com.app.finance.model.request.PersonalLoanDtlsReq;
 import com.app.finance.model.request.PersonalLoanInstallmentDtlReq;
 import com.app.finance.model.response.PersonalLoanAccountResponse;
-import com.app.finance.model.response.PersonalLoanInstallmentDtl;
+import com.app.finance.model.response.PersonalLoanInstallmentDtlResp;
 import com.app.finance.model.response.Response;
 
 @Service
@@ -28,14 +28,13 @@ public class PersonalLoanServiceImpl extends DaoServicess implements PersonalLoa
 
 		PersonalLoan personalLoan = personalLoanDtlMapper.mapToEntity(loanDtlsReq);
 		personalLoan = this.getDaoManager().getPersonalLoanAccountDao().saveOrUpdate(personalLoan);
-		return BaseResponse.builder().msg(BaseConstant.SUCESS_MSG).id(personalLoan.getLoanId()).build();
+		return BaseResponse.builder().msg(BaseConstant.SUCESS_MSG).id(personalLoan.getPersonalLoanAccountNo()).build();
 
 	}
 
 	@Override
 	public BaseResponse saveOrUpdate(PersonalLoanInstallmentDtlReq loanDtlsReq) {
-		PersonalLoanInstallmentsDtls installmentsDtls = personalLoanDtlMapper
-				.mapToPersonalLoanInstallmentEntity(loanDtlsReq);
+		PersonalLoanInstallmentsDtls installmentsDtls = personalLoanDtlMapper.map(loanDtlsReq);
 		Optional<PersonalLoan> personalLoan = this.getDaoManager().getPersonalLoanAccountDao()
 				.findById(loanDtlsReq.getLoanId());
 		installmentsDtls.setPersonalLoanAccountNo(personalLoan.get());
@@ -48,11 +47,11 @@ public class PersonalLoanServiceImpl extends DaoServicess implements PersonalLoa
 		PersonalLoanAccountResponse loanAccountResponse = new PersonalLoanAccountResponse();
 		Optional<PersonalLoan> personalLoan = this.getDaoManager().getPersonalLoanAccountDao()
 				.findById(personalLoanAccountNumber);
-		loanAccountResponse = personalLoanDtlMapper.mapToResponse(personalLoan.get());
+		loanAccountResponse = personalLoanDtlMapper.map(personalLoan.get());
 		List<PersonalLoanInstallmentsDtls> installmentsDtls = this.getDaoManager().getPersonalLoanAccountDao()
 				.findByLoanAccountNumber(personalLoan.get());
-		//List<PersonalLoanInstallmentDtl> installmentDtls = personalLoanDtlMapper.mapToResponse(installmentsDtls);
-		//loanAccountResponse.setInstallmentDtlsLst(installmentDtls);
+		List<PersonalLoanInstallmentDtlResp> installmentDtlResps = personalLoanDtlMapper.map(installmentsDtls);
+		loanAccountResponse.setInstallmentDtlsLst(installmentDtlResps);
 		return Response.<PersonalLoanAccountResponse>builder().response(loanAccountResponse).build();
 	}
 

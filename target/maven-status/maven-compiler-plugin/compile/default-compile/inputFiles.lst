@@ -82,11 +82,11 @@ E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\constant\BaseConsta
 E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\dto\LoanSummaryDto.java
 E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\service\AuthSerivice.java
 E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\controller\FirmLoanController.java
+E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\model\response\PersonalLoanInstallmentDtlResp.java
 E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\model\Errors.java
 E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\dao\SavingAccDao.java
 E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\dao\CustomerDaoImpl.java
 E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\repositories\LoanEMIDetailRepo.java
-E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\model\response\PersonalLoanInstallmentDtl.java
 E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\dao\PersonalLoanAccountDaoImpl.java
 E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\exception\BadRequest.java
 E:\Microsevice\finance-app-dev\src\main\java\com\app\finance\enums\LoanStatus.java

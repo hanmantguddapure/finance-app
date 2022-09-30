@@ -68,7 +68,6 @@ com\app\finance\dao\DaoManger.class
 com\app\finance\exception\CustomeExceptionHandler.class
 com\app\finance\model\request\CustContactPeopleReq.class
 com\app\finance\model\response\CustomerContactPeopleDtls.class
-com\app\finance\model\response\PersonalLoanInstallmentDtl.class
 com\app\finance\dao\PersonalLoanAccountDao.class
 com\app\finance\service\DaoServicess.class
 com\app\finance\entity\SavingAccount$SavingAccountBuilder.class
@@ -105,7 +104,6 @@ com\app\finance\service\ServiceManagerImpl.class
 com\app\finance\entity\ContactPersion$ContactPersionBuilder.class
 com\app\finance\service\DashBoardService.class
 com\app\finance\entity\UserCredential.class
-com\app\finance\model\response\PersonalLoanInstallmentDtl$PersonalLoanInstallmentDtlBuilder.class
 com\app\finance\repositories\LkpTypeRepo.class
 com\app\finance\service\SavingAccountService.class
 com\app\finance\model\response\SavingAccounResponse$SavingAccounResponseBuilder.class
@@ -122,6 +120,7 @@ com\app\finance\service\ExpenseService.class
 com\app\finance\service\FirmLoanServiceImpl.class
 com\app\finance\dao\AuthDao.class
 com\app\finance\dao\LkpDao.class
+com\app\finance\model\response\PersonalLoanInstallmentDtlResp$PersonalLoanInstallmentDtlRespBuilder.class
 com\app\finance\dao\LoanAccountDaoImpl.class
 com\app\finance\dao\UserRoleDao.class
 com\app\finance\model\Errors.class
@@ -148,6 +147,7 @@ com\app\finance\dao\SavingAccDao.class
 com\app\finance\service\DownloadService.class
 com\app\finance\service\LoanAccountService.class
 com\app\finance\entity\LoanAccountDetail.class
+com\app\finance\model\response\PersonalLoanInstallmentDtlResp.class
 com\app\finance\dto\AuthDetailsDto.class
 com\app\finance\service\FirmLoanService.class
 com\app\finance\entity\UserProfile.class
