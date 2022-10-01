@@ -30,7 +30,7 @@ public class PersonalLoanInstallmentsDtls {
 	private Long installmentId;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
-	private PersonalLoan personalLoanAccountNo;
+	private PersonalLoan loanId;
 	private Double installmentAmt;
 	private String installmentType;
 	private LocalDate installmentDate;

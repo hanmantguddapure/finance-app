@@ -16,30 +16,31 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-09-30T11:49:19+0530",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_321 (Oracle Corporation)"
+    date = "2022-10-01T15:52:14+0530",
+    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 17.0.2 (Eclipse Adoptium)"
 )
 @Component
 public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
 
     @Override
-    public PersonalLoan mapToEntity(PersonalLoanDtlsReq request) {
+    public PersonalLoan map(PersonalLoanDtlsReq request) {
         if ( request == null ) {
             return null;
         }
 
         PersonalLoanBuilder personalLoan = PersonalLoan.builder();
 
-        personalLoan.loanFrom( request.getLoanFrom() );
         personalLoan.loanAmt( request.getLoanAmt() );
-        personalLoan.monthlyEMIAmt( request.getMonthlyEMIAmt() );
-        personalLoan.loanTenure( request.getLoanTenure() );
-        personalLoan.montlyEMIDate( request.getMontlyEMIDate() );
-        personalLoan.loanStartDate( request.getLoanStartDate() );
         personalLoan.loanEndDate( request.getLoanEndDate() );
+        personalLoan.loanFrom( request.getLoanFrom() );
+        personalLoan.loanId( request.getLoanId() );
         personalLoan.loanInterest( request.getLoanInterest() );
-        personalLoan.remark( request.getRemark() );
+        personalLoan.loanStartDate( request.getLoanStartDate() );
         personalLoan.loanStatus( request.getLoanStatus() );
+        personalLoan.loanTenure( request.getLoanTenure() );
+        personalLoan.monthlyEMIAmt( request.getMonthlyEMIAmt() );
+        personalLoan.montlyEMIDate( request.getMontlyEMIDate() );
+        personalLoan.remark( request.getRemark() );
 
         return personalLoan.build();
     }
@@ -52,10 +53,11 @@ public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
 
         PersonalLoanInstallmentsDtlsBuilder personalLoanInstallmentsDtls = PersonalLoanInstallmentsDtls.builder();
 
-        personalLoanInstallmentsDtls.installmentId( request.getInstallmentId() );
+        personalLoanInstallmentsDtls.loanId( personalLoanInstallmentDtlReqToPersonalLoan( request ) );
         personalLoanInstallmentsDtls.installmentAmt( request.getInstallmentAmt() );
-        personalLoanInstallmentsDtls.installmentType( request.getInstallmentType() );
         personalLoanInstallmentsDtls.installmentDate( request.getInstallmentDate() );
+        personalLoanInstallmentsDtls.installmentId( request.getInstallmentId() );
+        personalLoanInstallmentsDtls.installmentType( request.getInstallmentType() );
 
         return personalLoanInstallmentsDtls.build();
     }
@@ -68,16 +70,17 @@ public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
 
         PersonalLoanAccountResponseBuilder personalLoanAccountResponse = PersonalLoanAccountResponse.builder();
 
-        personalLoanAccountResponse.loanFrom( request.getLoanFrom() );
         personalLoanAccountResponse.loanAmt( request.getLoanAmt() );
-        personalLoanAccountResponse.monthlyEMIAmt( request.getMonthlyEMIAmt() );
-        personalLoanAccountResponse.loanTenure( request.getLoanTenure() );
-        personalLoanAccountResponse.montlyEMIDate( request.getMontlyEMIDate() );
-        personalLoanAccountResponse.loanStartDate( request.getLoanStartDate() );
         personalLoanAccountResponse.loanEndDate( request.getLoanEndDate() );
+        personalLoanAccountResponse.loanFrom( request.getLoanFrom() );
+        personalLoanAccountResponse.loanId( request.getLoanId() );
         personalLoanAccountResponse.loanInterest( request.getLoanInterest() );
-        personalLoanAccountResponse.remark( request.getRemark() );
+        personalLoanAccountResponse.loanStartDate( request.getLoanStartDate() );
         personalLoanAccountResponse.loanStatus( request.getLoanStatus() );
+        personalLoanAccountResponse.loanTenure( request.getLoanTenure() );
+        personalLoanAccountResponse.monthlyEMIAmt( request.getMonthlyEMIAmt() );
+        personalLoanAccountResponse.montlyEMIDate( request.getMontlyEMIDate() );
+        personalLoanAccountResponse.remark( request.getRemark() );
 
         return personalLoanAccountResponse.build();
     }
@@ -94,5 +97,17 @@ public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
         }
 
         return list;
+    }
+
+    protected PersonalLoan personalLoanInstallmentDtlReqToPersonalLoan(PersonalLoanInstallmentDtlReq personalLoanInstallmentDtlReq) {
+        if ( personalLoanInstallmentDtlReq == null ) {
+            return null;
+        }
+
+        PersonalLoanBuilder personalLoan = PersonalLoan.builder();
+
+        personalLoan.loanId( personalLoanInstallmentDtlReq.getLoanId() );
+
+        return personalLoan.build();
     }
 }

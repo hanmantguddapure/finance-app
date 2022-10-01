@@ -8,6 +8,6 @@ import com.app.finance.entity.PersonalLoan;
 import com.app.finance.entity.PersonalLoanInstallmentsDtls;
 
 public interface PersonalLoanInstallmentRepo extends CrudRepository<PersonalLoanInstallmentsDtls, Long> {
-	public List<PersonalLoanInstallmentsDtls> findByPersonalLoanAccountNo(PersonalLoan personalLoanAccountNo);
+	public List<PersonalLoanInstallmentsDtls> findByLoanId(PersonalLoan loanId);
 
 }

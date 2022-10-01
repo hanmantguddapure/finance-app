@@ -24,7 +24,7 @@ import lombok.Setter;
 public class PersonalLoan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long personalLoanAccountNo;
+	private Long loanId;
 	private String loanFrom;
 	private Double loanAmt;
 	private Double monthlyEMIAmt;

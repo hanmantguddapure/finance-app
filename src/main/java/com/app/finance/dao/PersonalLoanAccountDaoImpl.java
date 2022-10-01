@@ -17,20 +17,24 @@ public class PersonalLoanAccountDaoImpl implements PersonalLoanAccountDao {
 	PersonalLoanRepo personalRepo;
 	@Autowired
 	PersonalLoanInstallmentRepo personalInstallmentRepo;
+
 	@Override
 	public PersonalLoan saveOrUpdate(PersonalLoan personalLoan) {
 		return personalRepo.save(personalLoan);
 	}
+
 	@Override
 	public Optional<PersonalLoan> findById(Long loanAccountNo) {
 		return personalRepo.findById(loanAccountNo);
 	}
+
 	@Override
 	public PersonalLoanInstallmentsDtls saveOrUpdate(PersonalLoanInstallmentsDtls personalLoanInstallmentsDtls) {
 		return personalInstallmentRepo.save(personalLoanInstallmentsDtls);
 	}
+
 	@Override
-	public List<PersonalLoanInstallmentsDtls> findByLoanAccountNumber(PersonalLoan personalLoanAccountNo) {
-		return personalInstallmentRepo.findByPersonalLoanAccountNo(personalLoanAccountNo);
+	public List<PersonalLoanInstallmentsDtls> findByLoanAccountNumber(PersonalLoan loanId) {
+		return personalInstallmentRepo.findByLoanId(loanId);
 	}
 }

@@ -11,6 +11,6 @@ public interface PersonalLoanService {
 
 	public BaseResponse saveOrUpdate(PersonalLoanInstallmentDtlReq loanDtlsReq);
 
-	public Response<PersonalLoanAccountResponse> findPersonalLoanAccountDtls(Long personalLoanAccountNumber);
+	public Response<PersonalLoanAccountResponse> findPersonalLoanAccountDtls(Long loanId);
 
 }
