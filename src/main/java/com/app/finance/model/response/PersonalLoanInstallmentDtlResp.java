@@ -14,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PersonalLoanInstallmentDtlResp {
 	private Long installmentId;
-	private Long personalLoanAccountNo;
+	private Long loanId;
 	private Double installmentAmt;
 	private String installmentType;
 	private LocalDate installmentDate;

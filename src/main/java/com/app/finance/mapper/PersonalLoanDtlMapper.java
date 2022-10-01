@@ -16,20 +16,22 @@ import com.app.finance.model.response.PersonalLoanInstallmentDtlResp;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface PersonalLoanDtlMapper {
-	
+
 	PersonalLoan map(PersonalLoanDtlsReq request);
 
-	@Mapping(target="loanId.loanId",source = "loanId")
+	@Mapping(target = "loanId.loanId", source = "loanId")
 	PersonalLoanInstallmentsDtls map(PersonalLoanInstallmentDtlReq request);
 
 	PersonalLoanAccountResponse map(PersonalLoan request);
 
-	List<PersonalLoanInstallmentDtlResp> map(List<PersonalLoanInstallmentsDtls> request);
+	List<PersonalLoanInstallmentDtlResp> map(List<PersonalLoanInstallmentsDtls> installmentsDtls);
 
-	default PersonalLoanInstallmentDtlResp map(PersonalLoanInstallmentsDtls employee) {
-		PersonalLoanInstallmentDtlResp employeDtlResp = new PersonalLoanInstallmentDtlResp();
-		employeDtlResp.setPersonalLoanAccountNo(employee.getLoanId().getLoanId());
-		return employeDtlResp;
+	default PersonalLoanInstallmentDtlResp map(PersonalLoanInstallmentsDtls installmentsDtls) {
+		return PersonalLoanInstallmentDtlResp.builder().loanId(installmentsDtls.getLoanId().getLoanId())
+				.installmentAmt(installmentsDtls.getInstallmentAmt())
+				.installmentDate(installmentsDtls.getInstallmentDate())
+				.installmentId(installmentsDtls.getInstallmentId())
+				.installmentType(installmentsDtls.getInstallmentType()).build();
 	}
 
 }

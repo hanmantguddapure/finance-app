@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-01T15:52:14+0530",
+    date = "2022-10-01T18:28:05+0530",
     comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 17.0.2 (Eclipse Adoptium)"
 )
 @Component
@@ -30,6 +30,8 @@ public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
 
         PersonalLoanBuilder personalLoan = PersonalLoan.builder();
 
+        personalLoan.emiAmount( request.getEmiAmount() );
+        personalLoan.emiDate( request.getEmiDate() );
         personalLoan.loanAmt( request.getLoanAmt() );
         personalLoan.loanEndDate( request.getLoanEndDate() );
         personalLoan.loanFrom( request.getLoanFrom() );
@@ -38,8 +40,6 @@ public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
         personalLoan.loanStartDate( request.getLoanStartDate() );
         personalLoan.loanStatus( request.getLoanStatus() );
         personalLoan.loanTenure( request.getLoanTenure() );
-        personalLoan.monthlyEMIAmt( request.getMonthlyEMIAmt() );
-        personalLoan.montlyEMIDate( request.getMontlyEMIDate() );
         personalLoan.remark( request.getRemark() );
 
         return personalLoan.build();
@@ -70,6 +70,8 @@ public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
 
         PersonalLoanAccountResponseBuilder personalLoanAccountResponse = PersonalLoanAccountResponse.builder();
 
+        personalLoanAccountResponse.emiAmount( request.getEmiAmount() );
+        personalLoanAccountResponse.emiDate( request.getEmiDate() );
         personalLoanAccountResponse.loanAmt( request.getLoanAmt() );
         personalLoanAccountResponse.loanEndDate( request.getLoanEndDate() );
         personalLoanAccountResponse.loanFrom( request.getLoanFrom() );
@@ -78,21 +80,19 @@ public class PersonalLoanDtlMapperImpl implements PersonalLoanDtlMapper {
         personalLoanAccountResponse.loanStartDate( request.getLoanStartDate() );
         personalLoanAccountResponse.loanStatus( request.getLoanStatus() );
         personalLoanAccountResponse.loanTenure( request.getLoanTenure() );
-        personalLoanAccountResponse.monthlyEMIAmt( request.getMonthlyEMIAmt() );
-        personalLoanAccountResponse.montlyEMIDate( request.getMontlyEMIDate() );
         personalLoanAccountResponse.remark( request.getRemark() );
 
         return personalLoanAccountResponse.build();
     }
 
     @Override
-    public List<PersonalLoanInstallmentDtlResp> map(List<PersonalLoanInstallmentsDtls> request) {
-        if ( request == null ) {
+    public List<PersonalLoanInstallmentDtlResp> map(List<PersonalLoanInstallmentsDtls> installmentsDtls) {
+        if ( installmentsDtls == null ) {
             return null;
         }
 
-        List<PersonalLoanInstallmentDtlResp> list = new ArrayList<PersonalLoanInstallmentDtlResp>( request.size() );
-        for ( PersonalLoanInstallmentsDtls personalLoanInstallmentsDtls : request ) {
+        List<PersonalLoanInstallmentDtlResp> list = new ArrayList<PersonalLoanInstallmentDtlResp>( installmentsDtls.size() );
+        for ( PersonalLoanInstallmentsDtls personalLoanInstallmentsDtls : installmentsDtls ) {
             list.add( map( personalLoanInstallmentsDtls ) );
         }
 

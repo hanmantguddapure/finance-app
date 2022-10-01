@@ -27,9 +27,9 @@ public class PersonalLoan {
 	private Long loanId;
 	private String loanFrom;
 	private Double loanAmt;
-	private Double monthlyEMIAmt;
+	private Double emiAmount;
 	private Integer loanTenure;
-	private LocalDate montlyEMIDate;
+	private LocalDate emiDate;
 	private LocalDate loanStartDate;
 	private LocalDate loanEndDate;
 	private Float loanInterest;
